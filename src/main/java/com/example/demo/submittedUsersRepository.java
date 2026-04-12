@@ -49,4 +49,8 @@ public interface submittedUsersRepository extends JpaRepository<submittedUsers,L
     
     submittedUsers findByUserEmail(String userEmail);
     Page<submittedUsers> findByQuizId(long quizId,Pageable pageable);
+    List<submittedUsers> findAllByOrderByScoreDesc();
+    
+    List<submittedUsers> findByNameContainingIgnoreCaseOrUserEmailContainingIgnoreCase( String name,
+		    String userEmail);
 }

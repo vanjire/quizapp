@@ -92,7 +92,10 @@ body {
 
     <!-- Profile Header -->
     <div class="profile-header">
-        <img src="${empty profileImage ? '/upload/default.png' : '/upload/' + profileImage}" alt="Profile Image">
+       <img src="${(profileImage != null && profileImage != '') 
+    ? '/upload/'.concat(profileImage) 
+    : '/upload/default.png'}"
+     class="profile-img">
         <div class="info">
             <h2>${fullname}</h2>
             <p>Email: ${useremail}</p>
@@ -109,7 +112,7 @@ body {
     <!-- Other Details -->
     <div class="section">
         <h3>Details</h3>
-        <p>Joined: ${userjoinedDate}</p>
+       
         <p>Location: ${userlocation != null ? userlocation : "Not specified"}</p>
     </div>
 

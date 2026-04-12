@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,19 +34,22 @@ public class Ajaxm {
 	calculate cl;
 	@Autowired
 	takeQuizRepository tqrp;
+	@Autowired 
+	sevice srv;
 @GetMapping("/leaders")
 	
 	public Page<R4s> leaders( @RequestParam int page,HttpSession session) {
-int size = 10; // 10 users per page also update in rank calculation
-		
+int size = 30; // 10 users per page also update in rank calculation
+		srv.findRank();
 	    Pageable pageable = PageRequest.of(page, size,Sort.by(Sort.Order.desc("score"),Sort.Order.asc("id")));
 	    
 	   R4s us=r4srp.findByUserEmail((String) session.getAttribute("uemail") );
-	    
-	   us.setLastActive(System.currentTimeMillis());
-	   r4srp.save(us);
+	   if(us!=null) {
+	   us.setLastActive(System.currentTimeMillis()); r4srp.save(us);}
+	   Page<R4s> leaders=r4srp.findAll(pageable);
+	   
 	  
-		return  r4srp.findAll(pageable);
+		return  leaders;
 	}
 @GetMapping("/NotificationsCount")
 public Long count(HttpSession session) {
@@ -74,12 +78,13 @@ public Map<String ,Object>getqstatus(HttpSession session){
 		long participants=subrp.countDistinctUsers();
 		long totalquizzes=qrp.totalQuizzes();
 		long topscore=r4srp.findTopScore();
+		long rank=r4srp.getUserRank(ue);
 		Map<String , Object> response=new HashMap<>();
 		response.put("totaluser", totaluser);
 		response.put("participants", participants);
 		response.put("totalquizzes",totalquizzes);
 		response.put("topscore", topscore);
-		response.put("rank", cl.rank(ue));
+		response.put("rank", rank);
 		return response;
 }
 
@@ -87,9 +92,9 @@ public Map<String ,Object>getqstatus(HttpSession session){
 
 public Page<takeQUiz> getQuizPage(
         @RequestParam int page,
-        @RequestParam(required=false) String search){
+        @RequestParam(required=false) String search,HttpSession session){
 
-    Pageable pageable = PageRequest.of(page,1);
+    Pageable pageable = PageRequest.of(page,30);
 
 
     if(search == null || search.trim().isEmpty()||search.equalsIgnoreCase("null")){
@@ -102,12 +107,18 @@ public Page<takeQUiz> getQuizPage(
 }
 
 @GetMapping("/leadersquiz")
-public Page<submittedUsers> getQuizLeaderPage(long qid,int page){
-	Pageable pageable=PageRequest.of(page, 1,Sort.by(Sort.Order.desc("score"),Sort.Order.asc("id")));
-	return subrp.findByQuizId(qid, pageable);
+public Page<submittedUsers> getQuizLeaderPage(long qid,int page,HttpSession session){
+	
+	srv.findRanksub();
+	Pageable pageable=PageRequest.of(page, 30,Sort.by(Sort.Order.desc("score"),Sort.Order.asc("id")));
+	
+	Page<submittedUsers> u=subrp.findByQuizId(qid, pageable);
+	
+	return u;
 }
 @GetMapping("/statusquiz")
 public Map<String,Object> statusQuiz(long qid,HttpSession session){
+	
 	String em=(String)session.getAttribute("uemail");
 	Quiz q=qrp.findById(qid).get();
 	long rank=subrp.findUserRank(em,qid);

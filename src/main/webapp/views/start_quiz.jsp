@@ -253,6 +253,7 @@ let countdown = setInterval(function(){
         clearInterval(countdown);
         sessionStorage.removeItem(quizKey);
         document.getElementById("quizForm").submit();
+        document.getElementById("subm").style.display="none";
     }
 
 },1000);
@@ -260,6 +261,7 @@ let countdown = setInterval(function(){
 function stopTimer(){
     clearInterval(countdown);
     sessionStorage.removeItem(quizKey);
+    document.getElementById("subm").style.display="none";
 }
 
 </script>

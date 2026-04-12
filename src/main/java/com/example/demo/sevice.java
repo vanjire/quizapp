@@ -17,6 +17,10 @@ public class sevice {
 	private QuestionRepository querp;
 	@Autowired
 	private JavaMailSender mailsender;
+	@Autowired
+	private R4sRepository r4srp;
+	@Autowired
+	private submittedUsersRepository subrp;
 	public String generateAutoPassword() {
 
 	    String characters = "0123456789";
@@ -35,15 +39,19 @@ public class sevice {
 
 	   try { SimpleMailMessage message = new SimpleMailMessage();
 	    message.setTo(toEmail);
-	    message.setSubject("Your Login Password");
-	    message.setText("Your generated password is: " + password +
-	                    "\nPlease change it after login.");
+	    message.setSubject("Subject: Quizora Verification Code");
+	    message.setText(
+	    		"Your Quizora verification code is "+password+".\r\n"
+	    		+ "\r\n"
+	    		+ "Do not share this code with anyone.\r\n"
+	    		+ "\r\n"
+	    		+ "– Quizora Team");
 
 	    mailsender.send(message);
-	    return "Please check your email for the verification code";
+	    return "Verification code sent from Quizora ";
 	    }
 	   catch(MailException e) {
-		   return "Sending failed";
+		   return "Something went wrong";
 	   }
 	}
 	public boolean isNumber(String str) {
@@ -71,5 +79,30 @@ public class sevice {
 	public List<Question> getquestions(long qid){
 		List<Question> qns=querp.findByQuizId(qid);
 		return qns;
+	}
+	
+	public void findRank() {
+		long rank=0;
+		List<R4s> u=r4srp.findAllByOrderByScoreDesc();
+		long prev=0;
+		for(R4s r:u) {
+			if(prev!=r.getHighestScore()) {
+			rank+=1;}
+			r.setRank(rank);
+			prev=r.getHighestScore();
+		}
+		return ;
+	}
+	public void findRanksub() {
+		long rank=0;
+		List<submittedUsers> u=subrp.findAllByOrderByScoreDesc();
+		long prev=0;
+		for(submittedUsers r:u) {
+			if(prev!=r.getScore()) {
+			rank+=1;}
+			r.setRank(rank);
+			prev=r.getScore();
+		}
+		return ;
 	}
 }

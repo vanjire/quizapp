@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>Quizora Quizzes</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -15,8 +15,13 @@
 
 <h2>Available Quizzes</h2>
 <div class="top-bar">
+
+    <a href="javascript:history.back()" class="back-btn">⬅</a>
+
     <input type="text" id="searchQuiz" placeholder="Search quiz by title..." />
+
     <p>Total Quizzes: <span id="quizCount"></span></p>
+
 </div>
 <div class="quiz-grid" id="quizGrid">
   
@@ -31,6 +36,21 @@
 </div>
 
 <style>
+.back-btn{
+    text-decoration:none;
+    background:#007bff;
+    color:white;
+    padding:8px 12px;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    background:#0056b3;
+    transform:scale(1.05);
+}
 .quiz-list-page {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg,#e3f2fd,#f4f6f9);

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Result & Leaderboard</title>
+<title>Quizora Result & Leaderboard</title>
 
 <style>
 /* ================= BODY ================= */
@@ -180,7 +180,62 @@ border-radius:50%;
 object-fit:cover;
 border:2px solid #667eea;
 }
+.quiz-leaders{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    width:90%;
+    max-width:900px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+}
 
+/* Table */
+.quiz-leaders table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+/* Header */
+.quiz-leaders th{
+    background:#667eea;
+    color:white;
+    padding:14px;
+}
+
+/* Cells */
+.quiz-leaders td{
+    padding:14px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+    vertical-align:middle;
+}
+
+/* Hover */
+.quiz-leaders tr:hover{
+    background:#f4f6ff;
+}
+
+/* User cell (image + name) */
+.user-cell{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+}
+
+/* Image */
+.user-cell img{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #667eea;
+}
+
+/* Top 3 highlight */
+.quiz-leaders tr:nth-child(2){ background:#fff8e1; }
+.quiz-leaders tr:nth-child(3){ background:#f3f3f3; }
+.quiz-leaders tr:nth-child(4){ background:#fbe9e7; }
 </style>
 </head>
 <body>
@@ -270,7 +325,7 @@ let counter = setInterval(()=>{
         count++;
         document.getElementById("correct").innerText = count;
     }
-},80);
+},30);
 
 /* Progress color */
 
@@ -337,50 +392,70 @@ function loadPage(pageNo = 0){
         let container = document.querySelector(".quiz-leaders");
 
         let html = `
-        <h2>🏆 Leaderboard</h2>
-        <table>
+        	<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
             
+            <h2 style="margin:0;">🏆 Quizora Leaderboard</h2>
+
+            <a href="/searchUsers2?qid=${qid}" style="text-decoration:none;">
+                <div style="
+                    display:flex;
+                    align-items:center;
+                    gap:8px;
+                    padding:8px 14px;
+                    border-radius:25px;
+                    background:white;
+                    border:1px solid #ddd;
+                    box-shadow:0 2px 6px rgba(0,0,0,0.05);
+                    color:#888;
+                    font-size:14px;
+                    white-space:nowrap;
+                ">
+                    <span>Search users</span>
+                    <span>🔍</span>
+                </div>
+            </a>
+
+        </div>
+
+        <table>
+            <tr>
+                <th>Rank</th>
+                <th>User</th>
+                <th>Score</th>
+            </tr>
         `;
 
-       let prevScore = null;
-let rank = 0;
-let actualIndex = page * data.size; // global position
+        data.content.forEach((user) => {
 
-data.content.forEach((user, index) => {
+            let rank = user.rank;
+            let uid = user.userEmail;
 
-    actualIndex++;
-
-    if(prevScore === null){
-        rank = actualIndex;
-    }
-    else if(user.score < prevScore){
-        rank = actualIndex;  // jump rank properly
-    }
-    // if same score → keep same rank
-
-    prevScore = user.score;
-			let uid=user.userEmail;
             let rankDisplay = "#" + rank;
 
             if(rank === 1) rankDisplay = "🥇 " + rank;
             else if(rank === 2) rankDisplay = "🥈 " + rank;
             else if(rank === 3) rankDisplay = "🥉 " + rank;
 
-            let profileImg = user.profilePhoto
-                ? user.profilePhoto
+            let profileImg = user.profilePhoto 
+                ? user.profilePhoto 
                 : "default.png";
 
             html += `
-            	
-            <tr onclick="window.location.href='/userInfo?uId=\${uid}'" style="cursor:pointer;">
-            	
-                <td>\${rankDisplay} <img src="/upload/\${profileImg}" /></td>
-               
-                <td>\${user.name}</td>
+            	<tr onclick="window.location.href='/userInfo2?uId=\${uid}&qid=\${qid}'" style="cursor:pointer;">
+
+                <td>\${rankDisplay}</td>
+
+                <td>
+                    <div class="user-cell">
+                        <img src="/upload/\${profileImg}" 
+                             onerror="this.src='/upload/default.png'">
+                        <span>\${user.name}</span>
+                    </div>
+                </td>
+
                 <td>⭐ \${user.score}</td>
-              
+
             </tr>
-           
             `;
         });
 
@@ -392,7 +467,7 @@ data.content.forEach((user, index) => {
             html += `<a href="#" onclick="loadPage(\${page-1})">⬅ Prev</a>`;
         }
 
-        html += `<span> Page \${page+1} </span>`;
+        html += `<span style="margin:0 10px;">Page \${page+1}</span>`;
 
         if(!data.last){
             html += `<a href="#" onclick="loadPage(\${page+1})">Next ➡</a>`;
@@ -430,7 +505,7 @@ function loadQuizStatus(){
 setInterval(() => {
     loadPage(currentPage);
     loadQuizStatus();
-}, 6000);
+}, 10000);
 </script>
 
 </body>

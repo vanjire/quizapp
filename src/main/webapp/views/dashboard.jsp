@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Leaderboard</title>
+<title>Quizora</title>
 
 <style>
 
@@ -100,7 +100,7 @@ box-shadow:0 12px 25px rgba(0,0,0,0.1);
 .rank{
 font-size:22px;
 font-weight:bold;
-display:felx;
+display:flex;
 align-items:center;
 gap:6px;
 }
@@ -436,6 +436,8 @@ text-decoration:none;
 font-weight:bold;
 box-shadow:0 10px 25px rgba(0,0,0,0.2);
 transition:0.3s;
+padding:18px 40px;
+font-size:18px;
 }
 
 .solve-btn:hover{
@@ -505,19 +507,20 @@ transform:scale(1.1);
 /* Online green dot */
 /* Image wrapper */
 .image-wrapper{
-display:flex;
 
-column-gap:10px;
+
+	display:flex;
+    align-items:center;
     position:relative;
-    width:50px;
-    height:50px;
+    gap:12px;
 }
 
 /* Profile image */
 .image-wrapper img{
 
-    width:100%;
-    height:100%;
+    width:50px;
+    height:50px;
+    min-width:50px;
     border-radius:50%;
     object-fit:cover;
     border:2px solid #ddd;
@@ -551,7 +554,7 @@ margin-bottom:15px;
 <!-- BRAND NAME -->
 <div style="text-align:left; margin-bottom:20px;">
     <h1 style="color:#0077b5; margin:0; font-size:28px;">
-        LearnSimple
+         Quizora
     </h1>
 </div>
 
@@ -609,15 +612,17 @@ Top Score: <span id="topScore"></span>
        <div class="profile-container">
     
     <!-- Profile Image -->
-    <img src="${empty profileImage ? '/upload/default.png' : '/upload/' + profileImage}"
-         class="profile-img"
-         onclick="toggleMenu()">
+   <img src="${(profileImage != null && profileImage != '') 
+    ? '/upload/'.concat(profileImage) 
+    : '/upload/default.png'}"
+     class="profile-img"
+     onclick="toggleMenu()">
 
     <!-- Dropdown Box -->
     <div id="profileMenu" class="profile-menu">
         <a href="/viewProfile">👤 View Profile</a>
         <a href="/UserProfile">✏ Edit Profile</a>
-        <a href="/settings">⚙ Settings</a>
+       
         <hr>
         <a href="/logout" class="logout">🚪 Logout</a>
     </div>
@@ -641,9 +646,34 @@ Top Score: <span id="topScore"></span>
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.demo.R4s" %>
 <!-- LEADERBOARD TITLE -->
-<h1 style="margin-bottom:20px; font-size:22px; color:#333;">
-    🏆 Leaderboard
-</h1>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+
+    <!-- LEFT: TITLE -->
+    <h1 style="margin:0;font-size:22px;color:#333;">
+        🏆 Quizora Leaderboard
+    </h1>
+
+    <!-- RIGHT: SEARCH -->
+    <a href="/searchUsers" style="text-decoration:none;">
+        <div style="
+            display:flex;
+            align-items:center;
+            gap:8px;
+            padding:8px 14px;
+            border-radius:25px;
+            background:white;
+            border:1px solid #ddd;
+            box-shadow:0 2px 6px rgba(0,0,0,0.05);
+            color:#888;
+            font-size:14px;
+            white-space:nowrap;
+        ">
+            <span>Search users</span>
+            <span>🔍</span>
+        </div>
+    </a>
+
+</div>
 <div id="leaderboard">
  
 </div>
@@ -663,21 +693,22 @@ Top Score: <span id="topScore"></span>
 </div>
 <div class="solve-hop">
     <a href="/toStarts" class="solve-btn">
-        🚀 Solve Questions
+        🚀  Solve Questions
     </a>
 </div>
 <script>
 let currentPage = 0;
 let totalPages = 0;
 let liveInterval = null;
-
+let rank;
 let previousRanks={};
+loadLeaderboard(0);
 function startLive(){
     if(liveInterval) clearInterval(liveInterval);
 
     liveInterval = setInterval(function(){
         loadLeaderboard(currentPage);
-    }, 2000); // 5 sec refresh
+    }, 10000); // 10 sec refresh
 }
 
 function stopLive(){
@@ -712,7 +743,7 @@ function loadLeaderboard(page){
 
         leaders.forEach(function(leader, index) {
 
-            let rank = page * data.size + index + 1;
+            rank = leader.rank;
 			
             let status = "";
 
@@ -766,53 +797,49 @@ function loadLeaderboard(page){
             };
            
             let tierClass = tier.toLowerCase();
-	
+			
             html +=
-            	"<a href='/userInfo?uId=" + leader.userEmail + "' class='card' id='card-" + leader.userEmail + "'>" +
+            	"<a href='/userInfo?uId=" + leader.userEmail + "' class='card " + cardHighlightClass + "'>" +
 
-            	"<div class='image-wrapper'>" +
-					"<div>"+
-                "<img src='" + 
-                (leader.profileImage ? "/upload/" + leader.profileImage : "/upload/default.png") +
-                "' style='width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid #ddd;'>"+
+            	    "<div class='image-wrapper'>" +
 
-                // ✅ Show online dot only if user active
-                ((leader.lastActive && (Date.now() - leader.lastActive) < 5000)
-                    ? "<span class='online-dot'></span>"
-                    : ""
-                ) + "</div>"+
-				
-                "<div class='rank-section'>" +
-                "<div class='rank'>" +
-                "<span>" + medal + "</span>" +
-                "<span>" + rank + "</span>" +
-                indicatorHTML +
-            "</div>" +
-	            "<div class='name'>" + leader.name + "</div>" +
-	            "<div>" + status + "</div>" +
-	        "</div>"+
+            	        "<div>" +
+            	            "<img src='" + 
+            	            (leader.profilePhoto
+            	                ? "/upload/" + leader.profilePhoto
+            	                : "/upload/default.png") +
+            	            "'>" +
 
-	    "</div>" +
+            	            ((leader.lastActive && (Date.now() - leader.lastActive) < 5000)
+            	                ? "<span class='online-dot'></span>"
+            	                : ""
+            	            ) +
+            	        "</div>" +
 
-            "</div>" +
-            	        
-            	 
-					
-                "<div class='middle-stats'>" +
-                    "<div>⭐ " + leader.score + "</div>" +
-                    "<div>📈 " + leader.AverageScore + "</div>" +
-                    "<div>📝 " + leader.QuizzesSolved + "</div>" +
-                "</div>" +
+            	        "<div class='rank-section'>" +
+            	            "<div class='rank'>" +
+            	                "<span>" + medal + "</span>" +
+            	                "<span>" + rank + "</span>" +
+            	                indicatorHTML +
+            	            "</div>" +
+            	            "<div class='name'>" + leader.name + "</div>" +
+            	        "</div>" +
 
-                "<div class='tier " + tierClass + "'>" +
-                    tier +
-                "</div>" +
+            	    "</div>" +
 
-            "</a>";
+            	    "<div class='middle-stats'>" +
+            	        "<div>⭐ " + leader.score + "</div>" +
+            	        "<div>📈 " + leader.AverageScore + "</div>" +
+            	        "<div>📝 " + leader.QuizzesSolved + "</div>" +
+            	    "</div>" +
+
+            	    "<div class='tier " + tierClass + "'>" + tier + "</div>" +
+
+            	"</a>";
 		
 		
         });
-
+	
         document.getElementById("leaderboard").innerHTML = html;
       
         lastUpdateTimestamp = Date.now();
@@ -838,7 +865,7 @@ function prevPage(){
     }
 }
 
-loadLeaderboard(0);
+
 function updateRefreshTime(){
 
     if(!lastUpdateTimestamp) return;
@@ -862,7 +889,7 @@ setInterval(function (){
 	.then(data=>{
 		document.getElementById("badge").innerText=data;
 	});
-},1000);
+},200000);
 
 document.querySelector(".notification-wrapper").addEventListener("click", function() {
     let dropdown = document.getElementById("notificationDropdown");
@@ -936,7 +963,7 @@ function loadQuizStatus(){
 			urank.innerText=data.rank;
 		});
 }
-setInterval(loadQuizStatus,2000);
+setInterval(loadQuizStatus,10000);
 </script>
 </body>
 </html>

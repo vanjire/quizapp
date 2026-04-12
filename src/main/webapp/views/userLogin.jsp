@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>Quizora - Login</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -13,17 +13,19 @@
 
 
 <div class="login-container">
-    <div class="login-title">Login with Email</div>
+    <div class="login-title">Log in to Quizora</div>
 
 	<form action="/loginEmail" method="post" target="_self" onsubmit="return validateEmailForm()" novalidate>
  <div class="input-group">
- 	<input type="text" name="name" placeholder="Enter your name" value="${name}">
-        <label>Email</label>
+ 	
+         <div style="text-align:center; font-size:13px; color:#777; margin-top:-15px; margin-bottom:15px;">
+    Enter your email to continue with Quizora
+</div>
        <input type="email" id="email" maxlength="100" name="email" placeholder="Enter your email" value="${ email}">
        
     </div>
 	<h5 id="emailError"></h5>
-   <button type="submit"  class="btn send-btn" id="sendBtn">Send Verification Code</button>
+   <button type="submit"  class="btn send-btn" id="sendBtn" onclick="res()">Send Code</button>
 </form>
    
 <div id="verifySection"
@@ -32,7 +34,8 @@
 <form action="/verify" method="post" onsubmit="return validateCodeForm()">
 
   <div class="input-group">
-        <label>Verification Code</label>
+        <label>Enter Quizora Code</label>
+       
         <input type="text" id="code" name="vcode" placeholder="Enter Code" maxlength="6">
     </div>
 
@@ -41,12 +44,13 @@
     <button type="submit" class="btn login-btn" id="verifyBtn">Submit</button>
 
     <input type="hidden" name="email" value="${email}">
-    <input type="hidden" name="name" value="${name}">
-    <h5 style="margin-top:15px;">${msg}</h5>
+    
+    
 
 </form>
 
 </div>
+<h5 style="margin-top:15px;">${msg}</h5>
 </div>
 <style>
 /* Page background */
@@ -229,6 +233,9 @@ window.validateCodeForm = function(){
 
 });
 
+function res(){
+	document.getElementById("sendBtn").innerText="Resend";
+}
 </script>
 </body>
 </html>

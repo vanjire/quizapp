@@ -23,7 +23,14 @@ private LocalDateTime joinDate;
 private String country;
 private String tier;
 private String fullName;
+private long rank;
 
+public long getRank() {
+	return rank;
+}
+public void setRank(long rank) {
+	this.rank = rank;
+}
 public String getFullName() {
 	return fullName;
 }

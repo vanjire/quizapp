@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Edit Profile</title>
+<title>Quizora Profile</title>
 
 <style>
 
@@ -65,14 +65,31 @@ cursor:pointer;
 button:hover{
 background:#219150;
 }
+.back-btn{
+position:absolute;
+top:15px;
+left:20px;
+text-decoration:none;
+background:#007bff;
+color:white;
+padding:6px 12px;
+border-radius:8px;
+font-size:14px;
+font-weight:bold;
+transition:0.3s;
+}
 
+.back-btn:hover{
+background:#0056b3;
+transform:scale(1.05);
+}
 </style>
 </head>
 
 <body>
 
 <div class="profile-form">
-
+<a href="/dashboard" class="back-btn">⬅ Back</a>
 <h2>👤 Edit Profile</h2>
 
 <form action="/saveProfile" method="post" enctype="multipart/form-data">
@@ -101,8 +118,9 @@ background:#219150;
 
 
 <div class="form-group">
-<label>Profile Photo</label>
-<input type="file" name="file">
+<label>Change avatar</label>
+<input type="file" name="file" accept="image/*">
+<h2 style="color:red;font-size:12px">${ferror}</h2>
 </div>
 
 <button type="submit">Save Profile</button>
