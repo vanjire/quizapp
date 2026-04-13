@@ -703,6 +703,7 @@ let liveInterval = null;
 let rank;
 let previousRanks={};
 loadLeaderboard(0);
+loadQuizStatus();
 function startLive(){
     if(liveInterval) clearInterval(liveInterval);
 
