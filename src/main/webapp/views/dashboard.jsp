@@ -638,28 +638,14 @@ margin-bottom:15px;
 </div>
 
 <!-- YOUR STATS -->
-<div class="top-section">
-<div class="platform-overview">
-<div class="stat-line">
-<span class="stat-icon">👥</span>
- Users: <span id="totalUsers"></span>
-</div>
+ <div class="user-stats">
+        <div class="stat-line">📊 Rank:<span id="uRank"></span></div>
+        <div class="stat-line">⭐ Total: ${totalScore}</div>
+        <div class="stat-line">📈 Avg: ${averageScore}</div>
+        <div class="stat-line">📝 Solved: ${solvedQuizzes}</div>
+        <div class="stat-line">🔥 Highest: ${highestScore}</div>
+    </div>
 
-<div class="stat-line">
-<span class="stat-icon">🔥</span>
-Participants: <span id="participants"></span>
-</div>
-
-<div class="stat-line">
-<span class="stat-icon">📚</span>
-Quizzes: <span id="totalQuizzes"></span>
-</div>
-
-<div class="stat-line">
-<span class="stat-icon">🏆</span>
-Top Score: <span id="topScore"></span>
-</div>
-</div>
 
     <!-- LEFT: USER STATS -->
    
@@ -715,13 +701,29 @@ Top Score: <span id="topScore"></span>
     </div>
 
 </div>
- <div class="user-stats">
-        <div class="stat-line">📊 Rank:<span id="uRank"></span></div>
-        <div class="stat-line">⭐ Total: ${totalScore}</div>
-        <div class="stat-line">📈 Avg: ${averageScore}</div>
-        <div class="stat-line">📝 Solved: ${solvedQuizzes}</div>
-        <div class="stat-line">🔥 Highest: ${highestScore}</div>
-    </div>
+<div class="top-section">
+<div class="platform-overview">
+<div class="stat-line">
+<span class="stat-icon">👥</span>
+ Users: <span id="totalUsers"></span>
+</div>
+
+<div class="stat-line">
+<span class="stat-icon">🔥</span>
+Participants: <span id="participants"></span>
+</div>
+
+<div class="stat-line">
+<span class="stat-icon">📚</span>
+Quizzes: <span id="totalQuizzes"></span>
+</div>
+
+<div class="stat-line">
+<span class="stat-icon">🏆</span>
+Top Score: <span id="topScore"></span>
+</div>
+</div>
+
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.demo.R4s" %>
 <!-- LEADERBOARD TITLE -->
