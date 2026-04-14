@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <meta charset="UTF-8">
 <title>Quizora</title>
 
@@ -429,7 +429,7 @@ z-index:1000;
 }
 
 .solve-btn{
-padding:14px 30px;
+padding:21px 32px;
 background:#27ae60;
 color:white;
 border-radius:30px;
@@ -660,7 +660,7 @@ Top Score: <span id="topScore"></span>
             display:flex;
             align-items:center;
             gap:8px;
-            padding:8px 14px;
+            padding:11px 14px;
             border-radius:25px;
             background:white;
             border:1px solid #ddd;
@@ -847,7 +847,7 @@ function loadLeaderboard(page){
         lastUpdateTimestamp = Date.now();
 
         updateRefreshTime();
-        startLive(); // ✅ restart live after loading
+        startLive(); // 
     });
 }
 
