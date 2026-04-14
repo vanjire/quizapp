@@ -429,7 +429,7 @@ z-index:1000;
 }
 
 .solve-btn{
-padding:21px 32px;
+padding:10px 15px;
 background:#27ae60;
 color:white;
 border-radius:30px;
