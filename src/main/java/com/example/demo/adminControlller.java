@@ -244,8 +244,8 @@ public String viewde(long qid,HttpSession session,ModelMap mp,HttpServletRespons
 }
 @GetMapping("/uLogin")
 public String login(HttpSession session) {
-	if((String)session.getAttribute("uemail")==null){return "redirect:/uLogin";}
-	return "redirect:/dashboard";
+	if((String)session.getAttribute("uemail")!=null){return "redirect:/dashboard";}
+	return "userLogin";
 }
 	
 
