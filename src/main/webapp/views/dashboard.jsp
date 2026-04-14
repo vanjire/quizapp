@@ -152,7 +152,7 @@ text-transform:uppercase;
 
 /* Button */
 .solve-btn{
-padding:12px 24px;
+padding:7px 10px;
 background:#27ae60;
 color:white;
 border-radius:15px;
