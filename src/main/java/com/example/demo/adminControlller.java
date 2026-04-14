@@ -243,13 +243,17 @@ public String viewde(long qid,HttpSession session,ModelMap mp,HttpServletRespons
 	return "viewDetail";
 }
 @GetMapping("/uLogin")
-public String login() {
-	return "userLogin";
+public String login(HttpSession session) {
+	if((String)session.getAttribute("uemail")==null){return "redirect:/uLogin";}
+	return "redirect:/dashboard";
 }
 	
 
 	@PostMapping("/loginEmail")
-	public String loginEmail(String email,RedirectAttributes ra,HttpServletResponse response) {
+	public String loginEmail(String email,RedirectAttributes ra,HttpServletResponse response,HttpSession session) {
+		if((String)session.getAttribute("uemail")!=null){
+			 ra.addFlashAttribute("msg","already logged in to this device");
+			return "redirect:/uLogin";}
 		if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
 	        ra.addFlashAttribute("msg","Invalid Email");
 	        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
