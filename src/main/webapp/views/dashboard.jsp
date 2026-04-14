@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <title>Quizora</title>
 
@@ -79,7 +79,7 @@ row-gap:15px;
 
 }
 
-/* Card */
+
 .card{
 background:white;
 border-radius:20px;
@@ -545,6 +545,84 @@ margin-bottom:15px;
 .rank span{
     display:inline-flex;
     align-items:center;
+}
+
+
+@media (max-width: 1024px){
+    .top-section{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .solve-wrapper{
+        width:100%;
+        display:flex;
+        justify-content:flex-end;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 768px){
+
+    body{
+        padding:15px;
+    }
+
+    .container{
+        padding:20px;
+    }
+
+    .top-section{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .user-stats{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .card{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+    }
+
+    .middle-stats{
+        flex-wrap:wrap;
+    }
+
+    .header-right{
+        width:100%;
+        justify-content:space-between;
+    }
+
+    .notification-dropdown{
+        width:100%;
+        left:0;
+        right:auto;
+    }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px){
+    .rank{
+        font-size:18px;
+    }
+
+    .name{
+        font-size:14px;
+    }
+
+    .middle-stats div{
+        font-size:12px;
+        padding:5px 8px;
+    }
+
+    .tier{
+        font-size:11px;
+        padding:5px 12px;
+    }
 }
 </style>
 </head>
