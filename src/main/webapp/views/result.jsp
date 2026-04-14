@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <meta charset="UTF-8">
 <title>Quizora Result & Leaderboard</title>
 
@@ -93,7 +93,7 @@ body{
 /* Buttons */
 
 button{
-    padding:12px 22px;
+    padding:16px 23px;
     border:none;
     border-radius:8px;
     background:linear-gradient(45deg,#4CAF50,#2ecc71);
