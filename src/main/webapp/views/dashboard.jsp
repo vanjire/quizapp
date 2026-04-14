@@ -624,8 +624,28 @@ margin-bottom:15px;
         padding:5px 12px;
     }
 }
+.solve-btn{
+    display:inline-block;
+    padding:14px 28px;
+    background:#27ae60;
+    color:white;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:16px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.2);
+    transition:all 0.3s ease;
+}
+
+/* Hover effect */
+.solve-btn:hover{
+    background:#219150;
+    transform:scale(1.05);
+}
 </style>
 </head>
+<!-- SAME HEAD + CSS (NO CHANGE) -->
+
 <body>
 
 <div class="container">
@@ -638,21 +658,17 @@ margin-bottom:15px;
 </div>
 
 <!-- YOUR STATS -->
- <div class="user-stats">
-        <div class="stat-line">📊 Rank:<span id="uRank"></span></div>
-        <div class="stat-line">⭐ Total: ${totalScore}</div>
-        <div class="stat-line">📈 Avg: ${averageScore}</div>
-        <div class="stat-line">📝 Solved: ${solvedQuizzes}</div>
-        <div class="stat-line">🔥 Highest: ${highestScore}</div>
-    </div>
+<div class="user-stats">
+    <div class="stat-line">📊 Rank:<span id="uRank"></span></div>
+    <div class="stat-line">⭐ Total: ${totalScore}</div>
+    <div class="stat-line">📈 Avg: ${averageScore}</div>
+    <div class="stat-line">📝 Solved: ${solvedQuizzes}</div>
+    <div class="stat-line">🔥 Highest: ${highestScore}</div>
+</div>
 
-
-    <!-- LEFT: USER STATS -->
-   
-
-    <!-- RIGHT: SOLVE BUTTON -->
-    <div class="solve-wrapper">
-    	 <div class="header-right">
+<!-- HEADER RIGHT -->
+<div class="solve-wrapper">
+    <div class="header-right">
 
         <!-- Notification -->
         <div class="notification-wrapper">
@@ -660,122 +676,97 @@ margin-bottom:15px;
             <span id="badge" class="badge">0</span>
 
             <div id="notificationDropdown" class="notification-dropdown">
-
-                <div class="notification-header">
-                    🔔 Notifications
-                </div>
-
+                <div class="notification-header">🔔 Notifications</div>
                 <div id="notificationList" class="notification-list">
                     <div class="empty-notification">No notifications</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile -->
+        <div class="user-profile">
+            <div class="profile-container">
+
+                <img src="${(profileImage != null && profileImage != '') 
+                ? '/upload/'.concat(profileImage) 
+                : '/upload/default.png'}"
+                class="profile-img"
+                onclick="toggleMenu()">
+
+                <div id="profileMenu" class="profile-menu">
+                    <a href="/viewProfile">👤 View Profile</a>
+                    <a href="/UserProfile">✏ Edit Profile</a>
+                    <hr>
+                    <a href="/logout" class="logout">🚪 Logout</a>
                 </div>
 
             </div>
         </div>
 
-        <!-- User -->
-        <div class="user-profile">
-       <div class="profile-container">
-    
-    <!-- Profile Image -->
-   <img src="${(profileImage != null && profileImage != '') 
-    ? '/upload/'.concat(profileImage) 
-    : '/upload/default.png'}"
-     class="profile-img"
-     onclick="toggleMenu()">
-
-    <!-- Dropdown Box -->
-    <div id="profileMenu" class="profile-menu">
-        <a href="/viewProfile">👤 View Profile</a>
-        <a href="/UserProfile">✏ Edit Profile</a>
-       
-        <hr>
-        <a href="/logout" class="logout">🚪 Logout</a>
     </div>
+</div>
 
-</div>
-</div>
+<!-- ✅ FIXED: TOP SECTION NOW INSIDE CONTAINER -->
+<div class="top-section">
+    <div class="platform-overview">
+
+        <div class="stat-line">
+            <span class="stat-icon">👥</span>
+            Users: <span id="totalUsers"></span>
+        </div>
+
+        <div class="stat-line">
+            <span class="stat-icon">🔥</span>
+            Participants: <span id="participants"></span>
+        </div>
+
+        <div class="stat-line">
+            <span class="stat-icon">📚</span>
+            Quizzes: <span id="totalQuizzes"></span>
+        </div>
+
+        <div class="stat-line">
+            <span class="stat-icon">🏆</span>
+            Top Score: <span id="topScore"></span>
         </div>
 
     </div>
-       
-    </div>
-
-</div>
-<div class="top-section">
-<div class="platform-overview">
-<div class="stat-line">
-<span class="stat-icon">👥</span>
- Users: <span id="totalUsers"></span>
-</div>
-
-<div class="stat-line">
-<span class="stat-icon">🔥</span>
-Participants: <span id="participants"></span>
-</div>
-
-<div class="stat-line">
-<span class="stat-icon">📚</span>
-Quizzes: <span id="totalQuizzes"></span>
-</div>
-
-<div class="stat-line">
-<span class="stat-icon">🏆</span>
-Top Score: <span id="topScore"></span>
-</div>
 </div>
 
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.demo.R4s" %>
+
 <!-- LEADERBOARD TITLE -->
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
-
-    <!-- LEFT: TITLE -->
     <h1 style="margin:0;font-size:22px;color:#333;">
         🏆 Quizora Leaderboard
     </h1>
 
-    <!-- RIGHT: SEARCH -->
     <a href="/searchUsers" style="text-decoration:none;">
-        <div style="
-            display:flex;
-            align-items:center;
-            gap:8px;
-            padding:11px 14px;
-            border-radius:25px;
-            background:white;
-            border:1px solid #ddd;
-            box-shadow:0 2px 6px rgba(0,0,0,0.05);
-            color:#888;
-            font-size:14px;
-            white-space:nowrap;
-        ">
+        <div style="display:flex;align-items:center;gap:8px;padding:11px 14px;border-radius:25px;background:white;border:1px solid #ddd;">
             <span>Search users</span>
             <span>🔍</span>
         </div>
     </a>
+</div>
 
-</div>
-<div id="leaderboard">
- 
-</div>
+<div id="leaderboard"></div>
 
 <div class="pagination">
-
-<button onclick="prevPage()" id="prevBtn">⬅ Previous</button>
-
-<span id="pageInfo" style="font-weight:bold;"></span>
-
-<button onclick="nextPage()" id="nextBtn">Next ➡</button>
-
+    <button onclick="prevPage()" id="prevBtn">⬅ Previous</button>
+    <span id="pageInfo" style="font-weight:bold;"></span>
+    <button onclick="nextPage()" id="nextBtn">Next ➡</button>
 </div>
+
 <div style="text-align:right; font-size:14px; margin-top:10px;">
    ⏱ Refreshed: <span id="refreshStatus">Never</span>
 </div>
-</div>
+
+</div> 
+
+<!-- FLOAT BUTTON -->
 <div class="solve-hop">
-    <a href="/toStarts" class="solve-btn">
-        🚀  Solve Questions
-    </a>
+    <a href="/toStarts" class="solve-btn">🚀 Solve Questions</a>
 </div>
 <script>
 let currentPage = 0;
