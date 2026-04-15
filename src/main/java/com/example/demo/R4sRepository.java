@@ -24,7 +24,7 @@ public interface R4sRepository extends JpaRepository<R4s,Long> {
 	 
 	
 	@Query("""
-SELECT COUNT(DISTINCT s.score) 
+SELECT COUNT(DISTINCT s.score)+1
 FROM R4s s
 WHERE s.score > (
     SELECT s2.score 
