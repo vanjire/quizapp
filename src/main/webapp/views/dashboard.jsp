@@ -1291,7 +1291,7 @@ color:#555;
     position: absolute;
 
     top: 100%;
-    left: 50%;
+    left: 98%;
     transform: translateX(-50%);
 
     border-width: 8px 8px 0 8px;
