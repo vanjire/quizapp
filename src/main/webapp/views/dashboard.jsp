@@ -1033,6 +1033,57 @@ color:#555;
 .bottom-bar{
     overflow:visible;
 }
+/* ===== FORCE PROFILE MENU ABOVE IMAGE (FINAL FIX) ===== */
+
+.profile-container{
+    position: relative;
+    display: inline-block;
+    z-index: 9999;
+}
+
+/* FORCE menu position ABOVE */
+.profile-menu{
+    position: absolute !important;
+
+    top: auto !important;
+    bottom: calc(100% + 12px) !important;
+
+    right: 0 !important;
+    left: auto !important;
+
+    display: none;
+
+    width: 180px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    padding: 10px;
+
+    z-index: 99999;
+}
+
+/* SHOW */
+.profile-menu.show{
+    display: block !important;
+}
+
+/* Arrow DOWN (pointing to image) */
+.profile-menu::after{
+    content: "";
+    position: absolute;
+
+    top: 100%;
+    right: 18px;
+
+    border-width: 8px 8px 0 8px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+
+/* IMPORTANT: prevent clipping */
+.bottom-bar{
+    overflow: visible !important;
+}
 </style>
 </head>
 <!-- SAME HEAD + CSS (NO CHANGE) -->
