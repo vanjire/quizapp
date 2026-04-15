@@ -314,18 +314,7 @@ margin-right:6px;
 }
 
 /* Dropdown box */
-.notification-dropdown{
-    display:none;
-    position:absolute;
-    right:0;
-    top:35px;
-    width:300px;
-    background:white;
-    border-radius:15px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.15);
-    overflow:hidden;
-    animation:fadeIn 0.3s ease;
-}
+
 
 /* Header */
 .notification-header{
@@ -581,7 +570,18 @@ background:#f9fafc;
 padding:15px 20px;
 border-radius:15px;
 }
-
+.notification-dropdown{
+    display:none;
+    position:absolute;
+    bottom:45px;
+    right:0;
+    width:280px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    overflow:hidden;
+    z-index:3000;
+}
 /* Add heading */
 .top-section h3{
 margin:0 0 10px 0;
@@ -757,7 +757,7 @@ cursor:pointer;
 }
 .search-btn{
 display:inline-block;
-padding:8px 14px;
+padding:7px 10px;
 border-radius:20px;
 background:white;
 border:1px solid #ddd;
@@ -788,20 +788,69 @@ background:#f5f5f5;
 .profile-menu{
     display:none;
     position:absolute;
-
-    bottom:55px;  //
+    bottom:55px;
     right:0;
-
     background:white;
     width:180px;
     border-radius:10px;
     box-shadow:0 5px 15px rgba(0,0,0,0.2);
     padding:10px;
-
     z-index:3000;
 }
 .bottom-bar{
     overflow:visible;
+}
+.pagination{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:15px;
+margin-top:30px;
+}
+
+/* Common button */
+.page-btn{
+padding:10px 18px;
+border-radius:25px;
+border:1px solid #ddd;
+background:white;
+color:#333;
+font-weight:600;
+cursor:pointer;
+transition:all 0.3s ease;
+}
+
+/* Hover */
+.page-btn:hover{
+background:#f5f7fa;
+transform:translateY(-2px);
+box-shadow:0 5px 12px rgba(0,0,0,0.1);
+}
+
+/* Next button highlight */
+.page-btn.primary{
+background:#3498db;
+color:white;
+border:none;
+}
+
+.page-btn.primary:hover{
+background:#217dbb;
+}
+
+/* Disabled */
+.page-btn:disabled{
+background:#eee;
+color:#aaa;
+cursor:not-allowed;
+box-shadow:none;
+transform:none;
+}
+
+/* Page info */
+.page-info{
+font-weight:600;
+color:#555;
 }
 </style>
 </head>
@@ -866,9 +915,11 @@ background:#f5f5f5;
 <div id="leaderboard"></div>
 
 <div class="pagination">
-    <button onclick="prevPage()" id="prevBtn">⬅ Previous</button>
-    <span id="pageInfo" style="font-weight:bold;"></span>
-    <button onclick="nextPage()" id="nextBtn">Next ➡</button>
+    <button onclick="prevPage()" id="prevBtn" class="page-btn">Previous</button>
+
+    <span id="pageInfo" class="page-info"></span>
+
+    <button onclick="nextPage()" id="nextBtn" class="page-btn primary">Next</button>
 </div>
 
 <div style="text-align:right; font-size:14px; margin-top:10px;">
