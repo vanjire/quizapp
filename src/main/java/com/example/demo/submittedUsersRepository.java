@@ -14,7 +14,7 @@ public interface submittedUsersRepository extends JpaRepository<submittedUsers,L
 
     List<submittedUsers> findByQuizId(long quizId);
     Page<submittedUsers> findByQuizIdOrderByScoreDesc(long quizId,Pageable pageable);
-    // ✅ JPQL VERSION
+    
 
     @Query("SELECT SUM(s.score) FROM submittedUsers s WHERE s.userEmail = :uemail")
     Long getTotalScore(@Param("uemail") String uemail);
@@ -25,14 +25,19 @@ public interface submittedUsersRepository extends JpaRepository<submittedUsers,L
     @Query("SELECT COUNT(s.quizId) FROM submittedUsers s WHERE s.userEmail = :uemail")
     Long getTotalSolvedQuizzes(@Param("uemail") String uemail);
     
-    @Query("SELECT COUNT(s) + 1 FROM submittedUsers s " +
-    	       "WHERE s.score > (" +
-    	       "   SELECT s2.score FROM submittedUsers s2 " +
-    	       "   WHERE s2.userEmail = :uemail AND s2.quizId = :quizId" +
-    	       ") " +
-    	       "AND s.quizId = :quizId")
-    	long findUserRank(@Param("uemail") String uemail,
-    	                  @Param("quizId") long quizId);
+  @Query("""
+SELECT COUNT(DISTINCT s.score) + 1
+FROM submittedUsers s
+WHERE s.quizId = :quizId
+AND s.score > (
+    SELECT s2.score
+    FROM submittedUsers s2
+    WHERE s2.userEmail = :uemail
+    AND s2.quizId = :quizId
+)
+""")
+long findUserRank(@Param("uemail") String uemail,
+                  @Param("quizId") long quizId);
     
     @Query("SELECT COUNT(u) FROM submittedUsers u")
 	 Long countAllUsers();
