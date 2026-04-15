@@ -571,12 +571,25 @@ margin-bottom:15px;
     .container{
         padding:20px;
     }
+.top-section{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:20px;
+margin-bottom:20px;
+background:#f9fafc;
+padding:15px 20px;
+border-radius:15px;
+}
 
-    .top-section{
-        flex-direction:column;
-        gap:15px;
-    }
+/* Add heading */
+.top-section h3{
+margin:0 0 10px 0;
+font-size:16px;
+color:#555;
+}
 
+ 
     .user-stats{
         flex-direction:column;
         gap:10px;
@@ -642,6 +655,62 @@ margin-bottom:15px;
     background:#219150;
     transform:scale(1.05);
 }
+.user-stats-box{
+background:#ffffff;
+padding:15px 20px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,0.05);
+margin-bottom:20px;
+}
+
+.user-stats-box h3{
+margin:0 0 10px 0;
+font-size:16px;
+color:#555;
+}
+.notification-wrapper{
+position:relative;
+z-index:1000;
+}
+
+.notification-dropdown{
+z-index:2000;
+}
+.solve-wrapper{
+display:flex;
+justify-content:flex-end;
+margin-bottom:15px;
+}
+
+.header-right{
+display:flex;
+align-items:center;
+gap:20px;
+}
+.solve-btn{
+display:inline-block;
+padding:16px 32px;
+background:#27ae60;
+color:white;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+font-size:16px;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+transition:all 0.3s ease;
+}
+
+.solve-btn:hover{
+background:#219150;
+transform:scale(1.08);
+}
+.solve-hop{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+z-index:1500;
+}
 </style>
 </head>
 <!-- SAME HEAD + CSS (NO CHANGE) -->
@@ -658,12 +727,16 @@ margin-bottom:15px;
 </div>
 
 <!-- YOUR STATS -->
-<div class="user-stats">
-    <div class="stat-line">📊 Rank:<span id="uRank"></span></div>
-    <div class="stat-line">⭐ Total: ${totalScore}</div>
-    <div class="stat-line">📈 Avg: ${averageScore}</div>
-    <div class="stat-line">📝 Solved: ${solvedQuizzes}</div>
-    <div class="stat-line">🔥 Highest: ${highestScore}</div>
+<div class="user-stats-box">
+    <h3>👤 Your Status</h3>
+
+    <div class="user-stats">
+        <div class="stat-line">📊 Rank: <span id="uRank"></span></div>
+        <div class="stat-line">⭐ Total: ${totalScore}</div>
+        <div class="stat-line">📈 Avg: ${averageScore}</div>
+        <div class="stat-line">📝 Solved: ${solvedQuizzes}</div>
+        <div class="stat-line">🔥 Highest: ${highestScore}</div>
+    </div>
 </div>
 
 <!-- HEADER RIGHT -->
@@ -709,27 +782,12 @@ margin-bottom:15px;
 <!-- ✅ FIXED: TOP SECTION NOW INSIDE CONTAINER -->
 <div class="top-section">
     <div class="platform-overview">
+        <h3>📊 Quiz Status</h3>
 
-        <div class="stat-line">
-            <span class="stat-icon">👥</span>
-            Users: <span id="totalUsers"></span>
-        </div>
-
-        <div class="stat-line">
-            <span class="stat-icon">🔥</span>
-            Participants: <span id="participants"></span>
-        </div>
-
-        <div class="stat-line">
-            <span class="stat-icon">📚</span>
-            Quizzes: <span id="totalQuizzes"></span>
-        </div>
-
-        <div class="stat-line">
-            <span class="stat-icon">🏆</span>
-            Top Score: <span id="topScore"></span>
-        </div>
-
+        <div class="stat-line">👥 Users: <span id="totalUsers"></span></div>
+        <div class="stat-line">🔥 Participants: <span id="participants"></span></div>
+        <div class="stat-line">📚 Quizzes: <span id="totalQuizzes"></span></div>
+        <div class="stat-line">🏆 Top Score: <span id="topScore"></span></div>
     </div>
 </div>
 
