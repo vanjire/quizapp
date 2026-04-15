@@ -914,9 +914,7 @@ color:#555;
 .show {
     display: block !important;
 }
-.bottom-bar{
-    overflow:visible;
-}
+
 .notification-dropdown {
     display: none;
     position: absolute;
@@ -934,10 +932,16 @@ color:#555;
     z-index: 9999;
 }
 
+
+.profile-container{
+    position: relative;
+}
+
 .profile-menu {
     display: none;
     position: absolute;
-    bottom: calc(100% + 10px);
+
+    bottom: calc(100% + 10px); 
     right: 0;
 
     width: 170px;
@@ -947,6 +951,21 @@ color:#555;
     padding: 10px;
 
     z-index: 9999;
+}
+
+/* Arrow pointing down to image */
+.profile-menu::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    right: 15px;
+
+    border-width: 8px 8px 0 8px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+.bottom-bar{
+    overflow:visible;
 }
 </style>
 </head>
