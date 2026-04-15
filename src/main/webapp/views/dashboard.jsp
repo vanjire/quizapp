@@ -1191,6 +1191,57 @@ color:#555;
 .bottom-bar{
     overflow: visible !important;
 }
+/* ===== NOTIFICATION POSITION FIX (RIGHT SIDE SAFE) ===== */
+
+.notification-wrapper{
+    position: relative;
+}
+
+/* FORCE correct position */
+.notification-dropdown{
+    position: absolute !important;
+
+    bottom: calc(100% + 12px) !important;
+
+    right: 0 !important;     /* stick to right */
+    left: auto !important;   /* cancel left */
+
+    transform: none !important;
+
+    width: 300px;
+    max-width: 90vw;  /* mobile safety */
+
+    max-height: 350px;
+    display: none;
+
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+
+    overflow: hidden;
+    z-index: 99999;
+}
+
+/* SHOW */
+.notification-dropdown.show{
+    display: block !important;
+}
+
+/* Scroll area */
+.notification-list{
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+/* ARROW aligned right */
+.notification-dropdown::after{
+    content: "";
+    position: absolute;
+
+    top: 100%;
+    right: 20px; /* stays under bell */
+
+    border-width: 8px 8px
 </style>
 </head>
 <!-- SAME HEAD + CSS (NO CHANGE) -->
