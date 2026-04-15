@@ -23,12 +23,14 @@ public interface R4sRepository extends JpaRepository<R4s,Long> {
 			);
 	 
 	
-	 @Query("SELECT COUNT(s) + 1 " +
-		       "FROM R4s s " +
-		       "WHERE s.score > (" +
-		       "   SELECT s2.score " +
-		       "   FROM R4s s2 " +
-		       "   WHERE s2.userEmail = :uemail" +
-		       ")")
-		long getUserRank(@Param("uemail") String uemail);
+	@Query("""
+SELECT COUNT(DISTINCT s.score) 
+FROM R4s s
+WHERE s.score > (
+    SELECT s2.score 
+    FROM R4s s2 
+    WHERE s2.userEmail = :uemail
+)
+""")
+long getUserRank(@Param("uemail") String uemail);
 }
