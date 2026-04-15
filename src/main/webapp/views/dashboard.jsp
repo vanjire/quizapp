@@ -774,7 +774,7 @@ background:#f5f5f5;
     display:none;
     position:absolute;
 
-    bottom:45px;   /*
+    bottom:45px;   
     right:0;
 
     width:280px;
@@ -858,7 +858,7 @@ color:#555;
     display: none;
     position: absolute;
 
-    bottom: calc(100% + 10px);  /*
+    bottom: calc(100% + 10px);
     left: 0;
 
     width: 280px;
@@ -879,7 +879,7 @@ color:#555;
     display: none;
     position: absolute;
 
-    bottom: calc(100% + 10px); /*
+    bottom: calc(100% + 10px);
     right: 0;
 
     width: 170px;
