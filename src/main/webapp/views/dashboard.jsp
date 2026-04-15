@@ -1241,7 +1241,7 @@ color:#555;
     top: 100%;
     right: 20px; /* stays under bell */
 
-    border-width: 8px 8px
+    border-width: 8px 8px}
 </style>
 </head>
 <!-- SAME HEAD + CSS (NO CHANGE) -->
