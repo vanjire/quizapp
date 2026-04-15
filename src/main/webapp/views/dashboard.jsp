@@ -729,7 +729,7 @@ z-index:2000;
 }
 .solve-btn{
 display:inline-block;
-padding:7px 16px;
+padding:10px 18px;
 background:#27ae60;
 color:white;
 border-radius:25px;
@@ -937,7 +937,7 @@ color:#555;
     position: relative;
 }
 
-/* ===== PROFILE FIX (FINAL OVERRIDE) ===== */
+
 
 .profile-container{
     position: relative;
@@ -1353,6 +1353,8 @@ align-items:flex-start;
 }
 .search-btn{
 padding:5px 10px !important;
+height:40px;
+
 }
 </style>
 </head>
