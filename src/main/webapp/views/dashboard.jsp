@@ -1294,7 +1294,7 @@ color:#555;
     width: 300px;
     max-width: calc(100vw - 20px); /* 👈 PREVENT CUT */
 
-    max-height: 350px;
+    max-height: 400px;
 
     background: #fff;
     border-radius: 14px;
@@ -1308,11 +1308,12 @@ color:#555;
 
 /* SHOW */
 .notification-dropdown.show{
-    display: block !important;
+    display: flex !important;
 }
 
 /* SCROLL */
 .notification-list{
+flex:1;
     max-height: 280px;
     overflow-y: auto;
 }
