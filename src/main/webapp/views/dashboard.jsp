@@ -1282,14 +1282,14 @@ color:#555;
 
 /* DROPDOWN */
 .notification-dropdown{
-    position: absolute !important;
+    position: fixed !important;
 
     bottom: calc(100% + 12px) !important;
 
-    right: 0 !important;
+    right: 20px !important;
     left: auto !important;
 
-    transform: translateX(0) !important;
+    transform: none !important;
 
     width: 300px;
     max-width: calc(100vw - 20px); /* 👈 PREVENT CUT */
