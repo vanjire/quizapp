@@ -1390,7 +1390,7 @@ height:40px;
 <!-- ✅ FIXED: TOP SECTION NOW INSIDE CONTAINER -->
 <div class="top-section">
     <div class="platform-overview">
-        <h3>📊 Quiz Status</h3>
+        <h3>📊 Quizora Status</h3>
 
         <div class="stat-line">👥 Users: <span id="totalUsers"></span></div>
         <div class="stat-line">🔥 Participants: <span id="participants"></span></div>
@@ -1409,7 +1409,7 @@ height:40px;
     </h1>
 
     <a href="/searchUsers" style="text-decoration:none;">
-        <div style="display:flex;align-items:center;gap:8px;padding:11px 14px;border-radius:25px;background:white;border:1px solid #ddd;">
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 7px;border-radius:25px;background:white;border:1px solid #ddd;">
             <span>Search users</span>
             <span>🔍</span>
         </div>
