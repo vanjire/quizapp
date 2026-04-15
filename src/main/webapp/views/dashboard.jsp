@@ -729,7 +729,7 @@ z-index:2000;
 }
 .solve-btn{
 display:inline-block;
-padding:5px 10px;
+padding:7px 16px;
 background:#27ae60;
 color:white;
 border-radius:25px;
@@ -1352,7 +1352,7 @@ justify-content:flex-start;
 align-items:flex-start;
 }
 .search-btn{
-padding:5px 10px;
+padding:5px 10px !important;
 }
 </style>
 </head>
