@@ -1084,6 +1084,113 @@ color:#555;
 .bottom-bar{
     overflow: visible !important;
 }
+/* ===== FINAL NOTIFICATION FIX ===== */
+
+.notification-wrapper{
+    position: relative;
+    z-index: 9999;
+}
+
+/* Dropdown */
+.notification-dropdown{
+    position: absolute !important;
+
+    bottom: calc(100% + 12px) !important; /* opens UP */
+    right: 0 !important;
+    left: auto !important;
+
+    width: 300px;
+    max-height: 350px;
+
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+
+    display: none;
+    flex-direction: column;
+
+    overflow: hidden; /* IMPORTANT */
+    z-index: 99999;
+}
+
+/* SHOW */
+.notification-dropdown.show{
+    display: flex !important;
+}
+
+/* Header */
+.notification-header{
+    padding: 12px 15px;
+    background: #3498db;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+}
+
+/* LIST SCROLL AREA */
+.notification-list{
+    max-height: 280px;
+    overflow-y: auto;
+    padding: 5px 0;
+}
+
+/* Scrollbar nice */
+.notification-list::-webkit-scrollbar{
+    width: 6px;
+}
+.notification-list::-webkit-scrollbar-thumb{
+    background: #ccc;
+    border-radius: 10px;
+}
+
+/* ITEM */
+.notification-item{
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    transition: 0.2s;
+}
+
+.notification-item:hover{
+    background: #f5f7fa;
+}
+
+/* TEXT */
+.notification-message{
+    font-size: 13px;
+    color: #333;
+}
+
+.notification-time{
+    font-size: 11px;
+    color: #888;
+    margin-top: 3px;
+}
+
+/* EMPTY */
+.empty-notification{
+    padding: 20px;
+    text-align: center;
+    color: #999;
+}
+
+/* ARROW */
+.notification-dropdown::after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 20px;
+
+    border-width: 8px 8px 0 8px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+
+
+.bottom-bar{
+    overflow: visible !important;
+}
 </style>
 </head>
 <!-- SAME HEAD + CSS (NO CHANGE) -->
