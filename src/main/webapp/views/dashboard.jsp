@@ -917,6 +917,37 @@ color:#555;
 .bottom-bar{
     overflow:visible;
 }
+.notification-dropdown {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 0;
+
+    width: 280px;
+    max-height: 320px;
+    overflow-y: auto;
+
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
+    z-index: 9999;
+}
+
+.profile-menu {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 10px);
+    right: 0;
+
+    width: 170px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    padding: 10px;
+
+    z-index: 9999;
+}
 </style>
 </head>
 <!-- SAME HEAD + CSS (NO CHANGE) -->
