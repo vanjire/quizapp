@@ -711,6 +711,64 @@ left:50%;
 transform:translateX(-50%);
 z-index:1500;
 }
+.bottom-bar{
+position:fixed;
+bottom:15px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:40px;
+background:white;
+padding:10px 20px;
+border-radius:40px;
+box-shadow:0 8px 25px rgba(0,0,0,0.15);
+z-index:2000;
+}
+.solve-btn{
+display:inline-block;
+padding:10px 20px;
+background:#27ae60;
+color:white;
+border-radius:25px;
+text-decoration:none;
+font-weight:600;
+font-size:14px;
+white-space:nowrap; /* prevents text break */
+transition:0.3s;
+}
+
+.solve-btn:hover{
+background:#219150;
+transform:scale(1.05);
+}
+.profile-img{
+width:40px;
+height:40px;
+border-radius:50%;
+border:2px solid #0077b5;
+}
+.notification-wrapper{
+font-size:20px;
+position:relative;
+cursor:pointer;
+}
+.search-btn{
+display:inline-block;
+padding:8px 14px;
+border-radius:20px;
+background:white;
+border:1px solid #ddd;
+font-size:13px;
+text-decoration:none;
+color:#333;
+transition:0.2s;
+}
+
+.search-btn:hover{
+background:#f5f5f5;
+}
 </style>
 </head>
 <!-- SAME HEAD + CSS (NO CHANGE) -->
@@ -823,8 +881,40 @@ z-index:1500;
 </div> 
 
 <!-- FLOAT BUTTON -->
-<div class="solve-hop">
-    <a href="/toStarts" class="solve-btn">🚀 Solve Questions</a>
+<div class="bottom-bar">
+
+    <!-- Notification -->
+    <div class="notification-wrapper">
+        🔔
+        <span id="badge" class="badge">0</span>
+
+        <div id="notificationDropdown" class="notification-dropdown">
+            <div class="notification-header">🔔 Notifications</div>
+            <div id="notificationList" class="notification-list">
+                <div class="empty-notification">No notifications</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Solve Button -->
+    <a href="/toStarts" class="solve-btn">🚀 Solve</a>
+
+    <!-- Profile -->
+    <div class="profile-container">
+        <img src="${(profileImage != null && profileImage != '') 
+        ? '/upload/'.concat(profileImage) 
+        : '/upload/default.png'}"
+        class="profile-img"
+        onclick="toggleMenu()">
+
+        <div id="profileMenu" class="profile-menu">
+            <a href="/viewProfile">👤 View Profile</a>
+            <a href="/UserProfile">✏ Edit Profile</a>
+            <hr>
+            <a href="/logout" class="logout">🚪 Logout</a>
+        </div>
+    </div>
+
 </div>
 <script>
 let currentPage = 0;
