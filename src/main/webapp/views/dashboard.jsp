@@ -674,6 +674,7 @@ z-index:1000;
 }
 
 .notification-dropdown{
+
 z-index:2000;
 }
 .solve-wrapper{
@@ -769,6 +770,39 @@ transition:0.2s;
 .search-btn:hover{
 background:#f5f5f5;
 }
+.notification-dropdown{
+    display:none;
+    position:absolute;
+
+    bottom:45px;   /*
+    right:0;
+
+    width:280px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    overflow:hidden;
+
+    z-index:3000;
+}
+.profile-menu{
+    display:none;
+    position:absolute;
+
+    bottom:55px;  //
+    right:0;
+
+    background:white;
+    width:180px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    padding:10px;
+
+    z-index:3000;
+}
+.bottom-bar{
+    overflow:visible;
+}
 </style>
 </head>
 <!-- SAME HEAD + CSS (NO CHANGE) -->
@@ -798,44 +832,7 @@ background:#f5f5f5;
 </div>
 
 <!-- HEADER RIGHT -->
-<div class="solve-wrapper">
-    <div class="header-right">
 
-        <!-- Notification -->
-        <div class="notification-wrapper">
-            🔔
-            <span id="badge" class="badge">0</span>
-
-            <div id="notificationDropdown" class="notification-dropdown">
-                <div class="notification-header">🔔 Notifications</div>
-                <div id="notificationList" class="notification-list">
-                    <div class="empty-notification">No notifications</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Profile -->
-        <div class="user-profile">
-            <div class="profile-container">
-
-                <img src="${(profileImage != null && profileImage != '') 
-                ? '/upload/'.concat(profileImage) 
-                : '/upload/default.png'}"
-                class="profile-img"
-                onclick="toggleMenu()">
-
-                <div id="profileMenu" class="profile-menu">
-                    <a href="/viewProfile">👤 View Profile</a>
-                    <a href="/UserProfile">✏ Edit Profile</a>
-                    <hr>
-                    <a href="/logout" class="logout">🚪 Logout</a>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-</div>
 
 <!-- ✅ FIXED: TOP SECTION NOW INSIDE CONTAINER -->
 <div class="top-section">
