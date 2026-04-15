@@ -937,32 +937,98 @@ color:#555;
     position: relative;
 }
 
-.profile-menu {
+/* ===== PROFILE FIX (FINAL OVERRIDE) ===== */
+
+.profile-container{
+    position: relative;
+    display: inline-block;
+}
+
+/* Profile Image */
+.profile-img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #0077b5;
+    object-fit: cover;
+    transition: 0.2s;
+}
+
+.profile-img:hover{
+    transform: scale(1.05);
+}
+
+/* Dropdown Menu */
+.profile-menu{
     display: none;
     position: absolute;
 
-    bottom: calc(100% + 10px); 
+
+    bottom: calc(100% + 10px);
     right: 0;
 
-    width: 170px;
-    background: white;
+    width: 180px;
+    background: #fff;
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
     padding: 10px;
 
     z-index: 9999;
+    animation: slideUp 0.25s ease;
 }
 
-/* Arrow pointing down to image */
-.profile-menu::after {
+/* Menu Items */
+.profile-menu a{
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.profile-menu a:hover{
+    background: #f5f7fa;
+}
+
+.profile-menu .logout{
+    color: red;
+}
+
+/* Arrow */
+.profile-menu::after{
     content: "";
     position: absolute;
     bottom: -8px;
-    right: 15px;
+    right: 18px;
 
     border-width: 8px 8px 0 8px;
     border-style: solid;
     border-color: white transparent transparent transparent;
+}
+
+/* Show class */
+.show{
+    display: block !important;
+}
+
+/* Animation */
+@keyframes slideUp{
+    from{
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.bottom-bar{
+    overflow: visible !important;
 }
 .bottom-bar{
     overflow:visible;
