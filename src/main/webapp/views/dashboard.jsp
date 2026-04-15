@@ -1033,7 +1033,7 @@ color:#555;
 .bottom-bar{
     overflow:visible;
 }
-/* ===== FORCE PROFILE MENU ABOVE IMAGE (FINAL FIX) ===== */
+
 
 .profile-container{
     position: relative;
@@ -1242,6 +1242,67 @@ color:#555;
     right: 20px; /* stays under bell */
 
     border-width: 8px 8px}
+/* ===== FINAL NOTIFICATION FIX (CENTERED ABOVE BELL) ===== */
+
+.notification-wrapper{
+    position: relative;
+}
+
+/* DROPDOWN */
+.notification-dropdown{
+    position: absolute !important;
+
+    bottom: calc(100% + 12px) !important;
+
+    left: 50% !important;
+    right: auto !important;
+
+    transform: translateX(-50%) !important; /* CENTER ALIGN */
+
+    width: 300px;
+    max-width: 90vw;
+
+    max-height: 350px;
+
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+
+    display: none;
+    overflow: hidden;
+
+    z-index: 99999;
+}
+
+/* SHOW */
+.notification-dropdown.show{
+    display: block !important;
+}
+
+/* SCROLL */
+.notification-list{
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+/* ARROW PERFECT CENTER */
+.notification-dropdown::after{
+    content: "";
+    position: absolute;
+
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    border-width: 8px 8px 0 8px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+
+/* IMPORTANT */
+.bottom-bar{
+    overflow: visible !important;
+}
 </style>
 </head>
 <!-- SAME HEAD + CSS (NO CHANGE) -->
