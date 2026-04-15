@@ -797,9 +797,7 @@ background:#f5f5f5;
     padding:10px;
     z-index:3000;
 }
-.bottom-bar{
-    overflow:visible;
-}
+
 .pagination{
 display:flex;
 justify-content:center;
@@ -851,6 +849,73 @@ transform:none;
 .page-info{
 font-weight:600;
 color:#555;
+}
+.notification-wrapper{
+    position: relative;
+}
+
+.notification-dropdown {
+    display: none;
+    position: absolute;
+
+    bottom: calc(100% + 10px);  /*
+    left: 0;
+
+    width: 280px;
+    max-height: 320px;
+    overflow-y: auto;
+
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
+    z-index: 3000;
+}
+.profile-container{
+    position: relative;
+}
+
+.profile-menu {
+    display: none;
+    position: absolute;
+
+    bottom: calc(100% + 10px); /*
+    right: 0;
+
+    width: 170px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    padding: 10px;
+
+    z-index: 3000;
+}
+.notification-dropdown::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 15px;  /* aligns with bell */
+
+    border-width: 8px 8px 0 8px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+
+.profile-menu::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    right: 15px; /* aligns with profile */
+
+    border-width: 8px 8px 0 8px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+.show {
+    display: block !important;
+}
+.bottom-bar{
+    overflow:visible;
 }
 </style>
 </head>
