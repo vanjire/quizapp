@@ -54,7 +54,7 @@ long findUserRank(@Param("uemail") String uemail,
     
     submittedUsers findByUserEmail(String userEmail);
     Page<submittedUsers> findByQuizId(long quizId,Pageable pageable);
-    List<submittedUsers> findAllByOrderByScoreDesc();
+    List<submittedUsers> findByQuizIdOrderByScoreDesc(long quizId);
     
     List<submittedUsers> findByNameContainingIgnoreCaseOrUserEmailContainingIgnoreCase( String name,
 		    String userEmail);
