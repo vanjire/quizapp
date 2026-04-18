@@ -109,7 +109,7 @@ public Page<takeQUiz> getQuizPage(
 @GetMapping("/leadersquiz")
 public Page<submittedUsers> getQuizLeaderPage(long qid,int page,HttpSession session){
 	
-	srv.findRanksub();
+	srv.findRanksub(qid);
 	Pageable pageable=PageRequest.of(page, 30,Sort.by(Sort.Order.desc("score"),Sort.Order.asc("id")));
 	
 	Page<submittedUsers> u=subrp.findByQuizId(qid, pageable);
