@@ -93,9 +93,9 @@ public class sevice {
 		}
 		return ;
 	}
-	public void findRanksub() {
+	public void findRanksub(long qid) {
 		long rank=0;
-		List<submittedUsers> u=subrp.findAllByOrderByScoreDesc();
+		List<submittedUsers> u=subrp.findByQuizIdOrderByScoreDesc(qid);
 		long prev=0;
 		for(submittedUsers r:u) {
 			if(prev!=r.getScore()) {
